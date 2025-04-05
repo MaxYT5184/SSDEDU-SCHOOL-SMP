@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings - School SMP</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="auth.js"></script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="logout.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Account Settings</h1>
+    <form id="settingsForm">
+      <label>Change Display Name:</label><br>
+      <input type="text" id="newName"><br><br>
+      <label>Change Password:</label><br>
+      <input type="password" id="newPassword"><br><br>
+      <label>Change Profile Image:</label><br>
+      <input type="file" id="newImage"><br><br>
+      <button type="submit">Save Changes</button>
+    </form>
+    <p id="settingsMsg"></p>
+  </main>
+  <script defer src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - School SMP</title>
+  <script defer src="auth.js"></script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="logout.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Admin Panel</h1>
+    <p>Welcome, Owner!</p>
+    <h2>User List</h2>
+    <div id="userList"></div>
+  </main>
+
+  <script>
+    // Admin-only page (only visible if the user is the owner)
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser.role !== 'owner') {
+      window.location.href = 'index.html';  // Redirect if not the owner
+    }
+
+    // Display list of users
+    const userListDiv = document.getElementById('userList');
+    const users = getUsers();
+    const userListHTML = Object.keys(users).map(email => `
+      <div>
+        <p><strong>${users[email].name}</strong> (${email})</p>
+        <p>Role: ${users[email].role}</p>
+      </div>
+    `).join('');
+    userListDiv.innerHTML = userListHTML;
+  </script>
+</body>
+</html>
