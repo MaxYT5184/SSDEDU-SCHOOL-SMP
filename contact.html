@@ -5,6 +5,27 @@
   <title>Contact Us</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+        // Initialize EmailJS with your public key
+        emailjs.init("hd8S9bU0sbH_YUHr9");
+    })();
+
+    window.onload = function() {
+      document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Send form data to EmailJS
+        emailjs.sendForm('service_fz6fy1i', 'template_zphhw0y', this)
+          .then(function(response) {
+            alert('Email sent successfully!');
+          }, function(error) {
+            alert('Email failed to send. Please try again later.');
+          });
+      });
+    };
+  </script>
 </head>
 <body>
   <nav>
@@ -20,9 +41,9 @@
   <main>
     <h1>Contact Us</h1>
     <form id="contactForm">
-      <input type="text" placeholder="Your Name" required><br>
-      <input type="email" placeholder="Your Email" required><br>
-      <textarea placeholder="Your Message" required></textarea><br>
+      <input type="text" name="name" placeholder="Your Name" required><br>
+      <input type="email" name="email" placeholder="Your Email" required><br>
+      <textarea name="message" placeholder="Your Message" required></textarea><br>
       <button type="submit">Send</button>
     </form>
   </main>
@@ -31,8 +52,5 @@
     <p>&copy; 2025 School SMP. All rights reserved.</p>
     <p>Powered by School SMP</p>
   </footer>
-
-  <script src="script.js"></script>
-  <script defer src="auth.js"></script>
 </body>
 </html>
