@@ -29,7 +29,7 @@ function showProfileBar() {
     bar.style.backgroundColor = "#fff"; // Optional background for better visibility
     bar.style.borderRadius = "5px"; // Rounded edges for the profile bar
     bar.innerHTML = `
-      <img src="${user.image || 'image/ownprofile.png'}" style="width:40px;height:40px;border-radius:50%;margin-right: 10px;">
+      <img src="${user.image || 'ownprofile.png'}" style="width:40px;height:40px;border-radius:50%;margin-right: 10px;">
       <span>${user.name}</span>
       <a href="settings.html" style="margin-left: 10px;">⚙️</a>
       <button onclick="logout()" class="logout-button" style="margin-left: 10px;">Logout</button>
@@ -48,7 +48,7 @@ function createOwnerAccount() {
       email: ownerEmail,
       password: 'Jaki7767',
       name: 'Max',
-      image: 'image/ownprofile.png', // Default image for owner
+      image: 'ownprofile.png', // Default image for owner
     };
 
     saveUser(ownerAccount);  // Save the owner account to localStorage
