@@ -52,21 +52,6 @@ button:hover {
   background-color: green;
 }
 
-/* Logout Button Styles */
-.logout-button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 5px 15px;  /* Adjust padding for a more compact button */
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;  /* Adjust font size for a more balanced look */
-}
-
-.logout-button:hover {
-  background-color: #e53935;
-}
-
 #profileBar {
   position: absolute;
   top: 10px;
