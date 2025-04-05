@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - School SMP</title>
+  <script defer src="auth.js"></script>
+</head>
+<body>
+  <h2>Profile Settings</h2>
+  <form onsubmit="updateProfile(); return false;">
+    <label for="newName">New Name:</label>
+    <input type="text" id="newName"><br><br>
+    <label for="newPassword">New Password:</label>
+    <input type="password" id="newPassword"><br><br>
+    <label for="newProfileImage">New Profile Image:</label>
+    <input type="file" id="newProfileImage"><br><br>
+    <button type="submit">Save Changes</button>
+  </form>
+  <p><a href="index.html">Go Back</a></p>
+</body>
+</html>

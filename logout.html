@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logout - School SMP</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <script>
+    // Clear user session and redirect to home page or login
+    localStorage.removeItem('currentUser');
+    window.location.href = 'index.html';  // Or 'login.html'
+  </script>
+</head>
+<body>
+
+  <footer>
+    <p>&copy; 2025 School SMP. All rights reserved.</p>
+    <p>Powered by School SMP</p>
+  </footer>
+
+  <p>Logging out...</p>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat - School SMP</title>
+  <script defer src="auth.js"></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="logout.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Chat Room</h1>
+    <div id="chatMessages"></div>
+    <textarea id="chatInput" placeholder="Type a message..." rows="4"></textarea><br>
+    <button onclick="sendMessage()">Send</button>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 School SMP. All rights reserved.</p>
+    <p>Powered by School SMP</p>
+  </footer>
+
+  <script>
+    const chatMessagesDiv = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+
+    // Retrieve previous messages from localStorage (for demo)
+    let messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+
+    // Display messages
+    function displayMessages() {
+      chatMessagesDiv.innerHTML = messages.map(msg => `
+        <div>
+          <strong>${msg.user}</strong>: ${msg.message}
+        </div>
+      `).join('');
+    }
+
+    // Send message
+    function sendMessage() {
+      const user = JSON.parse(localStorage.getItem('currentUser'));
+      if (user && chatInput.value.trim()) {
+        messages.push({
+          user: user.name,
+          message: chatInput.value.trim()
+        });
+        localStorage.setItem('chatMessages', JSON.stringify(messages));
+        chatInput.value = '';
+        displayMessages();
+      }
+    }
+
+    // Load messages on page load
+    window.onload = displayMessages;
+  </script>
+</body>
+</html>
