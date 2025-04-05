@@ -23,12 +23,16 @@ function showProfileBar() {
     const bar = document.createElement("div");
     bar.style.position = "absolute";
     bar.style.top = "10px";
-    bar.style.left = "10px";  // Changed to top-left
+    bar.style.left = "10px";  // Set to top-left
+    bar.style.zIndex = "9999"; // Ensure it appears on top
+    bar.style.padding = "5px";
+    bar.style.backgroundColor = "#fff"; // Optional background for better visibility
+    bar.style.borderRadius = "5px"; // Rounded edges for the profile bar
     bar.innerHTML = `
-      <img src="${user.image || 'image/ownprofile.png'}" style="width:40px;height:40px;border-radius:50%;">
+      <img src="${user.image || 'image/ownprofile.png'}" style="width:40px;height:40px;border-radius:50%;margin-right: 10px;">
       <span>${user.name}</span>
-      <a href="settings.html">⚙️</a>
-      <button onclick="logout()">Logout</button>
+      <a href="settings.html" style="margin-left: 10px;">⚙️</a>
+      <button onclick="logout()" class="logout-button" style="margin-left: 10px;">Logout</button>
     `;
     nav.appendChild(bar);
   }
@@ -36,17 +40,15 @@ function showProfileBar() {
 
 // Function to create the owner account
 function createOwnerAccount() {
-  // Check if the owner account already exists
   const ownerEmail = 'ta3004835@ssdedu.org';
   const existingOwner = localStorage.getItem(ownerEmail);
 
-  // If owner account does not exist, create it
   if (!existingOwner) {
     const ownerAccount = {
       email: ownerEmail,
       password: 'Jaki7767',
       name: 'Max',
-      image: 'image/ownprofile.png', // You can change this to an actual image URL later
+      image: 'image/ownprofile.png', // Default image for owner
     };
 
     saveUser(ownerAccount);  // Save the owner account to localStorage
@@ -94,7 +96,7 @@ function signup() {
   };
 
   saveUser(newUser);  // Save the new user in localStorage
-  localStorage.setItem('currentUserEmail', email);  // Save logged in user's email
+  localStorage.setItem('currentUserEmail', email);  // Save logged-in user's email
   window.location.href = 'index.html';  // Redirect to home page after signup
   alert('Signup successful');
 }
@@ -108,17 +110,37 @@ function updateProfile() {
   const newPassword = document.getElementById('newPassword').value || user.password;
   const newProfileImage = document.getElementById('newProfileImage').files[0];
 
-  const updatedUser = {
-    ...user,
-    name: newName,
-    password: newPassword,
-    image: newProfileImage ? URL.createObjectURL(newProfileImage) : user.image,
-  };
+  let newImageBase64 = user.image;  // Default to existing image if not updated
 
-  saveUser(updatedUser);  // Save updated user data
-  localStorage.setItem('currentUserEmail', user.email);  // Reassign email in localStorage
-  alert('Profile updated successfully');
-  window.location.href = 'index.html';  // Redirect to home page after update
+  if (newProfileImage) {
+    const reader = new FileReader();
+    reader.onloadend = function() {
+      newImageBase64 = reader.result;
+      const updatedUser = {
+        ...user,
+        name: newName,
+        password: newPassword,
+        image: newImageBase64,
+      };
+      saveUser(updatedUser);  // Save updated user data
+      localStorage.setItem('currentUserEmail', user.email);  // Reassign email in localStorage
+      alert('Profile updated successfully');
+      window.location.href = 'index.html';  // Redirect to home page after update
+    };
+    reader.readAsDataURL(newProfileImage);  // Convert image to base64
+  } else {
+    // If no new image, just update name and password
+    const updatedUser = {
+      ...user,
+      name: newName,
+      password: newPassword,
+      image: newImageBase64,
+    };
+    saveUser(updatedUser);  // Save updated user data
+    localStorage.setItem('currentUserEmail', user.email);  // Reassign email in localStorage
+    alert('Profile updated successfully');
+    window.location.href = 'index.html';  // Redirect to home page after update
+  }
 }
 
 // Logout function
