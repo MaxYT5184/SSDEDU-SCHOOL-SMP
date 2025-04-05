@@ -10,6 +10,28 @@
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3309273645696464"
      crossorigin="anonymous"></script>
+
+  <style>
+    /* Cookie banner styling */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      display: none;
+      z-index: 1000;
+    }
+    #cookie-banner button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -45,9 +67,31 @@
     <p>Powered by School SMP</p>
   </footer>
 
+  <!-- Cookie consent banner -->
+  <div id="cookie-banner">
+    <p>We use cookies to improve your experience. By continuing to use this site, you agree to our use of cookies. 
+      <button id="accept-cookies">Accept</button>
+    </p>
+  </div>
+
   <script>
+    // Function to check if cookies have been accepted
+    function checkCookieConsent() {
+      if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookie-banner').style.display = 'block';
+      }
+    }
+
+    // Function to handle the acceptance of cookies
+    document.getElementById('accept-cookies').addEventListener('click', function() {
+      localStorage.setItem('cookiesAccepted', 'true'); // Store cookie consent in localStorage
+      document.getElementById('cookie-banner').style.display = 'none'; // Hide the banner
+    });
+
+    // Check cookie consent status on page load
     window.onload = function () {
       showProfileBar();  // Display profile bar if logged in
+      checkCookieConsent(); // Check cookie consent status
     };
 
     if ('serviceWorker' in navigator) {
