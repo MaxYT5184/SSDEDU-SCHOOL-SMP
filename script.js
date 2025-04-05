@@ -27,3 +27,13 @@ window.onerror = function (message, source, lineno, colno, error) {
   }
   return true; // Prevents the default browser error page
 };
+
+// Default error handler: redirect to an error page based on HTTP status code
+window.onload = function() {
+  if (document.title === "404 - Page Not Found") {
+    window.location.href = "404.html";
+  } else if (document.title === "505 - HTTP Version Not Supported") {
+    window.location.href = "505.html";
+  }
+  // Add more conditions as needed...
+};
