@@ -25,7 +25,7 @@ function showProfileBar() {
     bar.style.top = "10px";
     bar.style.left = "10px";  // Changed to top-left
     bar.innerHTML = `
-      <img src="${user.image || 'https://via.placeholder.com/40'}" style="width:40px;height:40px;border-radius:50%;">
+      <img src="${user.image || 'image/ownprofile.png'}" style="width:40px;height:40px;border-radius:50%;">
       <span>${user.name}</span>
       <a href="settings.html">⚙️</a>
       <button onclick="logout()">Logout</button>
