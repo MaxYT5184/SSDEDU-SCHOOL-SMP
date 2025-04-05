@@ -48,7 +48,7 @@ function createOwnerAccount() {
       email: ownerEmail,
       password: 'Jaki7767',
       name: 'Max',
-      image: 'image/ownprofile.png', // Default image for owner
+      image: 'ownprofile.png', // Default image for owner
     };
 
     saveUser(ownerAccount);  // Save the owner account to localStorage
