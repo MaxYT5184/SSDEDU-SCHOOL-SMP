@@ -8,8 +8,8 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-        // Initialize EmailJS with your public key
-        emailjs.init("hd8S9bU0sbH_YUHr9");
+      // Initialize EmailJS with your public key
+      emailjs.init("hd8S9bU0sbH_YUHr9");
     })();
 
     window.onload = function() {
@@ -41,16 +41,13 @@
   <main>
     <h1>Contact Us</h1>
     <form id="contactForm">
-      <input type="text" name="name" placeholder="Your Name" required><br>
-      <input type="email" name="email" placeholder="Your Email" required><br>
-      <textarea name="message" placeholder="Your Message" required></textarea><br>
-      <button type="submit">Send</button>
-    </form>
-  </main>
+      <label for="name">Your Name</label>
+      <input type="text" name="name" id="name" placeholder="Your Name" required><br>
 
-  <footer>
-    <p>&copy; 2025 School SMP. All rights reserved.</p>
-    <p>Powered by School SMP</p>
-  </footer>
-</body>
-</html>
+      <label for="email">Your Email</label>
+      <input type="email" name="email" id="email" placeholder="Your Email" required><br>
+
+      <label for="title">Subject</label>
+      <input type="text" name="title" id="title" placeholder="Subject" required><br>
+
+      <label for="message">Your Message</label
