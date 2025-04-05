@@ -23,7 +23,7 @@ function showProfileBar() {
     const bar = document.createElement("div");
     bar.style.position = "absolute";
     bar.style.top = "10px";
-    bar.style.right = "10px";
+    bar.style.left = "10px";  // Changed to top-left
     bar.innerHTML = `
       <img src="${user.image || 'https://via.placeholder.com/40'}" style="width:40px;height:40px;border-radius:50%;">
       <span>${user.name}</span>
@@ -46,7 +46,7 @@ function createOwnerAccount() {
       email: ownerEmail,
       password: 'Jaki7767',
       name: 'Max',
-      image: 'https://via.placeholder.com/40', // You can change this to an actual image URL later
+      image: 'image/ownprofile.png', // You can change this to an actual image URL later
     };
 
     saveUser(ownerAccount);  // Save the owner account to localStorage
