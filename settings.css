@@ -104,7 +104,9 @@ a:hover {
   background-color: #ff5f57;
   color: white;
   border: none;
-  padding: 5px;
+  padding: 5px 10px;  /* Reduced padding for a smaller button */
+  font-size: 14px;  /* Adjust font size to match the design */
+  border-radius: 5px;
   cursor: pointer;
 }
 
