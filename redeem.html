@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redeem Code | DefendaHoster</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      padding: 40px;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    input {
+      width: 300px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .success { color: #28ff84; margin-top: 20px; }
+    .error { color: #ff4f4f; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>🎁 Redeem Your Free Hosting Code</h1>
+
+  <input id="siteName" type="text" placeholder="Website Name" required><br>
+  <input id="siteLink" type="text" placeholder="Website Link (https://...)" required><br>
+  <input id="codeInput" type="text" placeholder="Enter Your Redeem Code" required><br>
+  <button onclick="redeemCode()">Redeem</button>
+
+  <div id="message" class=""></div>
+
+  <script>
+    const validCodes = [
+      "defendahoster-dev-8sa2-k1u-ii6-sn2",
+      "defendahoster-dev-8sa2-55o-6UR-ok5",
+      "defendahoster-dev-8sa2-s6y-OJX-r3k",
+      "defendahoster-dev-8sa2-waz-OIT-4bh",
+      "defendahoster-dev-8sa2-d0u-6c3-1ci",
+      "defendahoster-dev-8sa2-WCB-WGJ-fgd",
+      "defendahoster-dev-8sa2-S6U-8lu-ydu",
+      "defendahoster-dev-8sa2-15M-ET0-56s",
+      "defendahoster-dev-8sa2-72B-c3h-f5j",
+      "defendahoster-dev-8sa2-ovu-vkt-RQE",
+      "defendahoster-dev-8sa2-JHA-44H-WK6",
+      "defendahoster-dev-8sa2-G63-9c6-w16",
+      "defendahoster-dev-8sa2-ca1-5t0-XO0",
+      "defendahoster-dev-8sa2-bm3-E12-mne",
+      "defendahoster-dev-8sa2-P2I-GUS-m0k",
+      "defendahoster-dev-8sa2-egm-3GF-Z2W",
+      "defendahoster-dev-8sa2-8il-RM0-66o",
+      "defendahoster-dev-8sa2-LKT-o7w-m50",
+      "defendahoster-dev-8sa2-R94-U2V-BH1",
+      "defendahoster-dev-8sa2-x34-2EB-toy",
+      "defendahoster-dev-8sa2-wr9-h1q-d6q",
+      "defendahoster-dev-8sa2-pnx-BGT-V48",
+      "defendahoster-dev-8sa2-SEZ-3ss-qec",
+      "defendahoster-dev-8sa2-0s7-hsb-vwn",
+      "defendahoster-dev-8sa2-w1p-7KN-IN7",
+      "defendahoster-dev-8sa2-jm5-4dq-4on",
+      "defendahoster-dev-8sa2-etw-nas-GQD"
+    ];
+
+    function redeemCode() {
+      const siteName = document.getElementById('siteName').value.trim();
+      const siteLink = document.getElementById('siteLink').value.trim();
+      const code = document.getElementById('codeInput').value.trim();
+      const message = document.getElementById('message');
+      const usedCodes = JSON.parse(localStorage.getItem("usedCodes") || "[]");
+
+      if (!siteName || !siteLink || !code) {
+        message.className = "error";
+        message.textContent = "❗ Please fill in all fields.";
+        return;
+      }
+
+      if (usedCodes.includes(code)) {
+        message.className = "error";
+        message.textContent = "❌ This code has already been used!";
+        return;
+      }
+
+      if (!validCodes.includes(code)) {
+        message.className = "error";
+        message.textContent = "❌ Invalid redeem code!";
+        return;
+      }
+
+      // Mark code as used
+      usedCodes.push(code);
+      localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
+
+      // Simulate successful redemption
+      message.className = "success";
+      message.innerHTML = `✅ Code redeemed successfully!<br>📅 1 month hosting added for <b>${siteName}</b><br>🌐 <a href="${siteLink}" style="color:#0af" target="_blank">${siteLink}</a>`;
+
+      // In real system, send this data to backend/server or webhook
+    }
+  </script>
+</body>
+</html>
